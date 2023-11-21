@@ -5,13 +5,12 @@ from flask import Flask
 from flask import request
 
 app = Flask(__name__)
-app.config.from_json('config.json')
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
     body = request.data
     signature = request.headers['x-pyrus-sig']
-    secret = str.encode(app.config['SECRET_KEY'])
+    secret = "9Fuq3kaTj8BeugXJb2BuVsH~Rh-~tSXp0U~5zGNcbym1FEawcxLeFxsHs9oa1gcuwD5vMmQi-SwjXBhRsqjcsQNJty1qq9LU"
 
     if _is_signature_correct(body, secret, signature):
         return _prepare_response(body.decode('utf-8'))
